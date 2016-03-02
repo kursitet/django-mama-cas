@@ -72,11 +72,13 @@ except AttributeError:  # pragma: no cover
 
 # gevent is optional, and allows for asynchronous single sign-out
 # requests. If it is not present, synchronous requests will be sent.
-try:
-    import gevent
-except ImportError:  # pragma: no cover
-    gevent = None
-
+#try:
+#    import gevent
+#except ImportError:  # pragma: no cover
+#    gevent = None
+# Mihara: Monkeypatching gevent the way mama-cas does it breaks a lot of things.
+# We can't afford that, so I'm locking the problem out for the moment until someone with a deeper understanding of things looks into it.
+gevent = None
 
 # defusedxml is optional, and is used for the /samlValidate
 # endpoint. If it is not present, this endpoint raises an exception.
